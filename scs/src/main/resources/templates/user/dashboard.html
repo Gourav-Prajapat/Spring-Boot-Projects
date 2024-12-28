@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" data-th-replace="~{base :: parent(~{:: #content}, ~{::title}, ~{:: #script})}">
+
+<head>
+    <title th:text="${loggedInUser.name} +'| Dashboard'">Dashboard Page</title>
+</head>
+
+<body>
+    <div id="content">
+        <!-- user is logged in : sidebar -->
+        <div th:if="${loggedInUser}">
+            <div th:replace="~{user/sidebar :: user-sidebar}"></div>
+        </div>
+        
+        <div class="sm:pl-64 pt-20" style="height: 1000px">
+            <h1 class="text-3xl flex items-center">Welcome, <span class="text-3xl"
+                    th:text="${loggedInUser.name}"></span> </h1>
+                    <span>this is your Dashboard page</span>
+            <h3 th:text="${loggedInUser.email}"></h3>
+
+            <!-- agar user logged in hai toh -->
+            <div th:if="${loggedInUser}">
+                <h1> user is logged in </h1>
+                <h1> this is user logged in section</h1>
+            </div>
+        </div>
+    </div>
+    <div id="script">
+        <script>console.log("Dashboard page is loading")</script>
+    </div>
+</body>
+
+</html>

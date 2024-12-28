@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-th-replace="~{base :: parent(~{:: #content}, ~{::title}, ~{:: #script})}">
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <div id="content">
+        <!-- User is logged in: show sidebar and user-specific content -->
+        <div th:if="${loggedInUser}">
+            <!-- Sidebar -->
+            <div th:replace="~{user/sidebar :: user-sidebar}"></div>
+            
+            <!-- Main Content -->
+            <div class="sm:pl-64 pt-20" style="height: 1000px;">
+                <h1 class="text-3xl flex items-center">
+                    Welcome, <span class="text-3xl" th:text="${loggedInUser.name}"></span>
+                </h1>
+                <span>This is your about page</span>
+                <h3 th:text="${loggedInUser.email}"></h3>
+
+                <!-- Additional logged-in user section -->
+                <div>
+                    <h1>User is logged in</h1>
+                    <h1>This is the user logged-in section</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- User is not logged in: show generic content -->
+        <div th:unless="${loggedInUser}">
+            <h1>Welcome, This is the about page</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum magnam in minima, 
+                facere modi deserunt rerum odit fugiat animi voluptate unde reiciendis minus deleniti
+                similique tenetur obcaecati earum quod! Qui nulla provident velit numquam, assumenda 
+                deleniti facilis aspernatur ducimus possimus? Officiis quo 
+                aliquam reprehenderit molestias eligendi ratione ducimus similique debitis.
+            </p>
+        </div>
+    </div>
+
+    <div id="script">
+        <script>console.log("About page is loading")</script>
+    </div>
+</body>
+</html>

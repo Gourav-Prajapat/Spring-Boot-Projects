@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
+>
+  <head>
+    <title>Success-page</title>
+  </head>
+  <body>
+    <div id="content" class="text-center md:w-1/2 mx-auto">
+      <div class="mt-5" th:replace="~{message::SuccessMessage}"></div>
+      <a th:href="@{'/login'}" class="bg-blue-600 mt-2 text-white px-3 py-2 rounded">
+        Login
+      </a>
+    </div>
+    <div id="script">
+        <script>console.log("success page is loading")</script>
+    </div>
+  </body>
+</html>

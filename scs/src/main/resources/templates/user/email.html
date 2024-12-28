@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{:: #content}, ~{::title}, ~{:: #script})}">
+<head>
+    <title>Send Email</title>
+</head>
+<body>
+    <div id="content">
+         <!-- User is logged in: show sidebar and user-specific content -->
+       <div th:if="${loggedInUser}">
+             <!-- Sidebar  -->
+            <div th:replace="~{user/sidebar :: user-sidebar}"></div>
+            <p>sidebar is here</p>
+
+            <!-- Main Content  -->
+            <div class="sm:pl-64 pt-20">
+                 <div id="react-root"></div> 
+            </div>
+            <script th:inline="javascript">
+                window.INITIAL_DATA = {
+                    userEmail: /*[[${loggedInUser.email}]]*/ ''
+                };
+                // window.VITE_DEV_SERVER = 'http://localhost:5173';
+            </script>
+        </div>
+
+    </div>
+
+    <div id="script">
+        <script>console.log("Email module is loading")</script>
+        <script type="module">
+            import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+            RefreshRuntime.injectIntoGlobalHook(window)
+            window.$RefreshReg$ = () => {}
+            window.$RefreshSig$ = () => (type) => type
+            window.__vite_plugin_react_preamble_installed__ = true
+            </script>
+        <script type="module" src="http://localhost:5173/@vite/client"></script>
+        <script type="module" src="http://localhost:5173/src/main.jsx"></script>
+    </div>
+</body>
+ </html> 

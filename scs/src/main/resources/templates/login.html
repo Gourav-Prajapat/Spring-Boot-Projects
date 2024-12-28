@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-th-replace="~{base :: parent(~{:: #content}, ~{::title}, ~{:: #script})}">
+<head>
+    <title>login</title>
+</head>
+<body>
+    <div id="content">
+        <div class="grid grid-cols-12 mt-4">
+            <div class="col-span-4 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
+            <div class="col-span-4 md:col-span-8 lg:col-span-6 xl:col-span-4">
+                <!-- card starts -->
+                <div class="block p-6 bg-white border-t-8 border-blue-700 rounded-xl shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-blue-700 dark:hover:bg-gray-700">
+                
+                    <!--message-box -->
+                    <div th:replace="~{message::SuccessMessage}"></div>
+
+                    <h5 class="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Login Here</h5>
+                    <p class="font-normal text-gray-400 dark:text-gray-400"></p>
+                    
+                    <!-- Form starts -->
+                    <div class="text-red-600 text-xl text-center my-3" th:if="${param.error}">
+                        Invalid Email and password.</div>
+                        <div class="text-green-600 text-xl text-center my-3 " th:if="${param.logout}">
+                        You have been logged out.</div>
+                    <form th:action="@{'/authenticate'}" method="post" class="mt-3">
+                        <!-- Email as username field -->
+                        <div class="mb-3">
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                            <input name="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@gmail.com" required />
+                            <!-- <p th:if="${#fields.hasErrors('email')}" 
+                            th:errors="*{email}"
+                            class="text-red-600 px-1 py-2 ">Email is Required</p> -->
+                          </div>
+                        <!-- password field-->
+                        <div class="mb-5">
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                            <input name="password" type="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+                            <!-- <p th:if="${#fields.hasErrors('password')}" 
+                            th:errors="*{password}" 
+                            class="text-red-600 px-1 py-2 ">Password is Required</p> -->
+                        </div>
+                        <!-- login button -->
+                        <div class="mb-3 flex justify-center space-x-3">
+                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login
+                            </button>
+                        </div>
+                    </form>
+                    <!-- login with google -->
+                    <div class="social-button-container flex flex-col w-full sm:flex-row justify-center mt-5 gap-4">
+                        <a th:href="@{'/oauth2/authorization/google'}" class="px-4 py-2 flex flex-col sm:flex-row gap-2 justify-center items-center w-full bg-white text-black hover:bg-gray-100 dark:bg-gray-600 dark:hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 dark:text-white transition ease-in duration-200 text-center text-base  shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                            <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" alt="google logo">
+                            <span>Sign in with Google</span>
+                        </a>
+                        <!-- login with github -->
+                        <a  th:href="@{'/oauth2/authorization/github'}" class="py-4 px-2 flex  flex-col sm:flex-row gap-2 justify-center items-center w-full bg-white text-black hover:bg-gray-100 dark:bg-gray-600 dark:hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 dark:text-white transition ease-in duration-200 text-center text-base  shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                            <img class="w-6 h-6" src="https://www.svgrepo.com/show/512317/github-142.svg" alt="github logo"><span>Sign in with Github</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="script">
+        <script>console.log("login page is loading")</script>
+    </div>
+
+</body>
+</html>
